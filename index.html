@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4efe7" />
+  <meta name="description" content="Calm arithmetic practice in the browser: short rounds of addition, subtraction, multiplication and division." />
+  <title>MaDi Studio | Arithmetic practice</title>
+  <link rel="icon" href="assets/images/madi_favicon.png" />
+  <link rel="apple-touch-icon" href="assets/icons/android/android-launchericon-192-192.png" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="css/reimagined.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="MaDi Studio home"><span class="brand-mark">M</span><span><strong>MaDi</strong><small>studio</small></span></a>
+      <div class="topbar-actions">
+        <span class="streak" id="streakLabel">0 day streak</span>
+        <button class="icon-button" id="languageToggle" type="button">EN</button>
+        <button class="icon-button" id="soundToggle" type="button" aria-label="Toggle sound" title="Toggle sound">Sound on</button>
+      </div>
+    </header>
+    <main>
+      <section class="view setup-view" id="setupView" aria-labelledby="setupTitle">
+        <div class="intro-copy">
+          <p class="eyebrow" id="introEyebrow">A small daily practice</p>
+          <h1 id="setupTitle"><span id="titleLead">Make numbers</span><br /><em id="titleEm">feel natural.</em></h1>
+          <p class="intro-text" id="introText">Short, focused rounds for building arithmetic confidence. Choose a lane and start where you are.</p>
+          <div class="mini-stats" aria-label="Your progress">
+            <div><strong id="sessionCount">0</strong><span id="sessionsLabel">sessions</span></div>
+            <div><strong id="bestScore">--</strong><span id="bestScoreLabel">best score</span></div>
+            <div><strong id="accuracyStat">--</strong><span id="accuracyLabel">accuracy</span></div>
+          </div>
+        </div>
+        <form class="setup-panel" id="setupForm">
+          <div class="panel-heading">
+            <div><span class="step-number">01</span><h2 id="buildTitle">Build your round</h2></div>
+            <span class="panel-note" id="panelNote">about 2 min</span>
+          </div>
+          <label class="field-label" id="nameLabel" for="playerName">Your name</label>
+          <input class="text-input" id="playerName" maxlength="24" placeholder="What should we call you?" autocomplete="name" />
+          <fieldset>
+            <legend id="modeLegend">Answer mode</legend>
+            <div class="mode-grid">
+              <label class="mode-card"><input type="radio" name="mode" value="practice" checked /><strong>123</strong><span id="modePractice">Practice</span></label>
+              <label class="mode-card"><input type="radio" name="mode" value="match" /><strong>&harr;</strong><span id="modeMatch">Match answers</span></label>
+              <label class="mode-card"><input type="radio" name="mode" value="quiz" /><strong>?</strong><span id="modeQuiz">Quiz</span></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend id="operationLegend">Practice lane</legend>
+            <div class="choice-grid" id="operationChoices">
+              <label class="choice-card"><input type="radio" name="operation" value="addition" checked /><span class="choice-symbol">+</span><span id="additionLabel">Addition</span></label>
+              <label class="choice-card"><input type="radio" name="operation" value="subtraction" /><span class="choice-symbol">-</span><span id="subtractionLabel">Subtraction</span></label>
+              <label class="choice-card"><input type="radio" name="operation" value="multiplication" /><span class="choice-symbol">x</span><span id="multiplicationLabel">Multiply</span></label>
+              <label class="choice-card"><input type="radio" name="operation" value="division" /><span class="choice-symbol">/</span><span id="divisionLabel">Divide</span></label>
+            </div>
+          </fieldset>
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label" id="levelLabel" for="difficulty">Level</label>
+              <select class="text-input" id="difficulty">
+                <option value="very_easy">Warm up</option>
+                <option value="easy">Steady</option>
+                <option value="medium" selected>Focused</option>
+                <option value="hard">Stretch</option>
+                <option value="very_hard">Challenge</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label class="field-label" id="questionsLabel" for="questionCount">Questions</label>
+              <select class="text-input" id="questionCount">
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+          </div>
+          <label class="switch-row">
+            <input type="checkbox" id="negativeMarking" />
+            <span class="switch"></span>
+            <span id="negativeLabel">Subtract a point for wrong answers</span>
+          </label>
+          <button class="primary-button" type="submit"><span id="startLabel">Start a round</span> <span>-></span></button>
+          <p class="form-hint" id="formHint">Press <kbd>Enter</kbd> to submit each answer.</p>
+        </form>
+      </section>
+      <section class="view countdown-view" id="countdownView" hidden>
+        <p class="eyebrow" id="countdownEyebrow">Get ready</p>
+        <div class="countdown-number" id="countdownNumber">3</div>
+        <p id="countdownText">Clear desk. Clear mind.</p>
+      </section>
+      <section class="view practice-view" id="practiceView" hidden aria-labelledby="practiceTitle">
+        <div class="practice-header">
+          <div>
+            <p class="eyebrow" id="practiceTitle">Focused round</p>
+            <h2 id="operationTitle">Addition</h2>
+          </div>
+          <div class="progress-copy">
+            <span id="questionProgress">1 / 6</span>
+            <div class="progress-track"><span id="progressBar"></span></div>
+          </div>
+        </div>
+        <div class="practice-layout">
+          <div class="problem-panel">
+            <span class="problem-label" id="problemLabel">Solve this</span>
+            <div class="problem" id="problemText">12 + 8</div>
+            <div class="answer-row">
+              <input id="answerInput" type="number" inputmode="numeric" autocomplete="off" aria-label="Your answer" />
+              <div class="answer-options" id="answerOptions"></div>
+              <button class="primary-button" id="submitAnswer" type="button"><span id="checkLabel">Check</span> <span>Enter</span></button>
+            </div>
+            <p class="feedback" id="feedback" role="status"></p>
+          </div>
+          <aside class="session-sidebar">
+            <div class="side-stat"><span id="scoreLabel">Score</span><strong id="liveScore">0</strong></div>
+            <div class="side-stat"><span id="timeLabel">Time</span><strong id="timer">00:00</strong></div>
+            <div class="side-stat"><span id="liveAccuracyLabel">Accuracy</span><strong id="liveAccuracy">--</strong></div>
+            <button class="text-button" id="quitRound" type="button">End round</button>
+          </aside>
+        </div>
+      </section>
+      <section class="view result-view" id="resultView" hidden aria-labelledby="resultTitle">
+        <div class="result-hero">
+          <p class="eyebrow" id="resultEyebrow">Round complete</p>
+          <h1 id="resultTitle"><span id="resultNice">Nice work, </span><span id="resultName">friend</span>.</h1>
+          <div class="score-ring"><strong id="resultScore">8</strong><span id="pointsLabel">points</span></div>
+          <p id="resultMessage">A little practice goes a long way.</p>
+        </div>
+        <div class="result-grid">
+          <div><span id="resultAccuracyLabel">Accuracy</span><strong id="resultAccuracy">80%</strong></div>
+          <div><span id="resultTimeLabel">Time</span><strong id="resultTime">00:42</strong></div>
+          <div><span id="resultCorrectLabel">Correct</span><strong id="resultCorrect">8 / 10</strong></div>
+        </div>
+        <div class="result-actions">
+          <button class="primary-button" id="sameRound" type="button"><span id="againLabel">Play again</span> <span>-></span></button>
+          <button class="secondary-button" id="newRound" type="button">Change setup</button>
+        </div>
+        <div class="review-list" id="reviewList"></div>
+      </section>
+    </main>
+    <footer><span id="footerLeft">MADI STUDIO / OPEN PRACTICE</span><span id="footerRight">Built for calm progress.</span></footer>
+  </div>
+  <script src="js/reimagined.js"></script>
+</body>
+</html>
