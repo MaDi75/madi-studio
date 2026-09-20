@@ -1,0 +1,99 @@
+/* Color Theme ->
+https://colorhunt.co/palette/ff8787f8c4b4e5ebb2bce29e */
+
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::selection {
+  color: black;
+  background-color: var(--pink);
+}
+
+button,
+a {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+:root {
+  /* COLORS  */
+  --pink: #ff8787;
+  --light-pink: #f8c4b4;
+  --green: #bce29e;
+  --light-green: #e5ebb2;
+  --gradient: linear-gradient(90deg, var(--green), var(--pink));
+
+  --text-shadow-outline-effect: -1px -1px 0px #000, 1px -1px 0px #000,
+    -1px 1px 0px #000, 1px 1px 0px #000;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+/* focus visible styling to interactive element to make the site accessible to  keyboard users */
+.btn:focus-visible {
+  outline: 0.3rem dotted red;
+  transform: scale(1.1);
+}
+
+/* Keyboard Shortcut or Keys CSS for kbd element  */
+kbd {
+  border-radius: 2px;
+  padding: 2px;
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 7%,
+    rgba(214, 214, 214, 1) 45%
+  );
+  border: 1px solid black;
+}
+
+/* TO REMOVE THE UP AND DOWN ARROWS ON Input tags of type="number" */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@keyframes fidgeting {
+  0% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(-2deg);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 1.5rem;
+}
+::-webkit-scrollbar-track {
+  background-color: var(--pink);
+  padding: 1em;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--green);
+  border: 2px solid black;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--light-green);
+}

@@ -1,0 +1,210 @@
+body {
+  font-family: "Indie Flower", cursive;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../assets/images/Arito_Colors_Cover.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.front {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.about_div {
+  padding: 1em 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about_div_img {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo_img {
+  width: 100%;
+  height: auto;
+  animation-name: fidgeting;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  z-index: -1;
+}
+
+.about_div_text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about_arito {
+  color: black;
+  margin: 1em 1em;
+  font-weight: 600;
+  font-size: 1.5em;
+  text-align: center;
+  transition: 0.25s ease-in-out;
+}
+.about_arito:hover {
+  text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.344);
+}
+
+h1 {
+  color: var(--pink);
+  font-size: 3em;
+  text-align: center;
+  text-shadow: 2px 3px 0px var(--light-green), 0px 0px 12px black;
+}
+
+.links {
+  text-decoration: none;
+  color: black;
+  padding: 1em 1em;
+  border: black 5px solid;
+  border-radius: 23% 77% 19% 81% / 56% 41% 59% 44%;
+  background-color: var(--light-pink);
+  font-weight: 900;
+  transition: transform 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.links:is(:active) {
+  transform: scale(1.2);
+}
+
+.bg_light_green {
+  background-color: var(--light-green);
+}
+.bg_light_pink {
+  background-color: var(--light-pink);
+}
+.bg_pink {
+  background-color: var(--pink);
+}
+.bg_green {
+  background-color: var(--green);
+}
+
+.other_links_div {
+  display: flex;
+  flex-direction: column;
+  margin: 2em 1em;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer a {
+  transition: transform 0.2s;
+}
+
+footer .socials_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: 2rem 0rem;
+}
+
+footer .socials_div a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--pink);
+  text-decoration: none;
+  color: black;
+  font-weight: 800;
+  border-radius: 23% 77% 19% 81% / 56% 41% 59% 44%;
+  font-size: 1.2rem;
+  padding: 1rem;
+  border: 5px black solid;
+}
+footer .socials_div img {
+  width: 2rem;
+  padding: 0.2rem;
+}
+
+@media (hover: hover) {
+  .links:is(:hover) {
+    transform: scale(1.2);
+  }
+  footer a:is(:hover) {
+    transform: scale(1.2);
+  }
+}
+
+footer .contact_link {
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 900;
+  margin: 1em 1em;
+  color: var(--light-green);
+  text-shadow: 1px 2px 5px black;
+  transition: transform 0.2s;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+footer .contact_link strong {
+  color: var(--pink);
+}
+
+footer .contact_link:hover,
+.contact_link strong {
+  transform: scale(1.1);
+}
+
+.comments_div {
+  margin-top: 2rem;
+  border-top: 3px solid black;
+  background-color: #bbe29ec0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  body {
+    font-size: 26px;
+  }
+  .front .logo_img {
+    width: 60%;
+  }
+}
+@media (min-width: 1000px) {
+  .about_div {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .about_div_img {
+    width: 50%;
+  }
+  .about_div_text {
+    width: 100%;
+    padding: 1em 1em;
+  }
+  .about_div .links {
+    width: 50%;
+  }
+  .front .logo_img {
+    width: 100%;
+  }
+  .giscus {
+    width: 50%;
+  }
+}
